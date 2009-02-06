@@ -39,6 +39,8 @@ The style sheet is in the pluing folder at /wp-content/plugins/kiva-widget/style
 
 == Screenshots ==
 
+1. The widget displayed on the side bar
 
+2. The widget's admin control
 
 
