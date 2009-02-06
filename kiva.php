@@ -96,7 +96,7 @@ function widget_kiva_loan_init() {
 
         $html = "<div id='kiva_loans'>"; 
         $html .= $content;
-        $html .= "<center><a href='http://kiva.org/'><img src='/wp-content/plugins/kiva-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
+        $html .= "<center><a href='http://kiva.org/'><img src='http://images.kiva.org/images/logoLeafy3.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
         $html .= "</div>";
         return $html;
     }
