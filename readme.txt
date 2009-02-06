@@ -2,9 +2,9 @@
 Contributors: road2nowhere
 Donate link: http://urpisdream.com/
 Tags: kiva, widgit
-Requires at least: 2.2
+Requires at least: 2.7
 Tested up to: 2.7
-Stable tag: 4.3
+Stable tag: 1
 
 Displays rotating entrepreneurs the blogger has invested in publically. Links back to Kiva.
 
