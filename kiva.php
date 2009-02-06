@@ -96,14 +96,14 @@ function widget_kiva_loan_init() {
 
         $html = "<div id='kiva_loans'>"; 
         $html .= $content;
-        $html .= "<center><a href='http://kiva.org/'><img src='http://images.kiva.org/images/logoLeafy3.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
+        $html .= "<center><a href='http://kiva.org/'><img src='". get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
         $html .= "</div>";
         return $html;
     }
 
     function build_html($loan, $size){
 
-        $html = "<link rel='stylesheet' href='". get_option('siteurl') . "/wp-content/plugins/kiva-widget/style.css' type='text/css' media='screen' />";
+        $html = "<link rel='stylesheet' href='". get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/style.css' type='text/css' media='screen' />";
         $html .= "<div class='loan'>";
         $html .= "<h3>" . $loan->{name}. "</h3><br />";
         $img_source = "http://www.kiva.org/img/$size/" . $loan->{'image'}->{'id'} . ".jpg";
