@@ -19,7 +19,7 @@ displays brief info about each of them. Links to the Kiva.org website
 
 How to install the Kiva Lendees plugin:
 
-1. Upload `kiva-widget` directory to the `/wp-content/plugins/` directory
+1. Upload `kivaorg-widget` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Add the widget to a sidebar, and set the options 
 
