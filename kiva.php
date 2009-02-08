@@ -69,7 +69,7 @@ function widget_kiva_loan_init() {
             $loans_array = $results->{'loans'};
             $total_loans = sizeof($loans_array);
 
-            if($total_loans == 0){
+            if($total_loans <= 0){
                 $content = "<p>User has no loans!</p>";
             }else{
                 $content = "<p>I have microlent to:</p>";     
