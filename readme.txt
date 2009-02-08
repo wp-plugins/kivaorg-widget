@@ -27,9 +27,12 @@ How to install the Kiva Lendees plugin:
 3. Add the widget to a sidebar via the 'Widgets' page under the 'Appearance' menu
 4. Set the options 
 
-Options:
+= Options: =
+
 Kiva username: Your Kiva Username
+
 Number of loans: The number you Kiva loans you would like to be displayed
+
 Image Size: The maximum width, or height (which ever is larger) of the image in pixels
 
 == Frequently Asked Questions ==
