@@ -76,7 +76,7 @@ function widget_kiva_loan_init() {
             
                 // Make this randomely choose one 
                 $loan_count = 0;
-                $used = array_fill(0, $total_loans-1, 0);
+                $used = array_fill(0, $total_loans, 0);
                 for($i = 0; $i < $total_loans; $i++){
                     if($i < $limit){
                         $j = rand(0, $total_loans-1 );
