@@ -4,7 +4,7 @@ Donate link: http://urpisdream.com/
 Tags: kiva, widgit
 Requires at least: 2.7
 Tested up to: 2.7
-Stable tag: 1.1
+Stable tag: 1.2
 
 Displays rotating entrepreneurs the blogger has invested in publically. Links back to Kiva.
 
