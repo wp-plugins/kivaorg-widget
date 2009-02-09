@@ -49,7 +49,13 @@ function widget_kiva_loan_init() {
 
         $options = get_option('widget_kiva_loan');
         $limit = $options['number_of_loans'];
+        if($limit <  1){
+            $limit = 1;
+        }
         $size = $options['image_size'];
+        if($size > 200){
+            $size = 200;
+        }
         $username = $options['kiva_username'];
 
         $content = "";
@@ -96,7 +102,7 @@ function widget_kiva_loan_init() {
 
         $html = "<div id='kiva_loans'>"; 
         $html .= $content;
-        $html .= "<center><a href='http://kiva.org/'><img src='". get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
+        $html .= "<center><a href='http://kiva.org/'><img src='" . get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
         $html .= "</div>";
         return $html;
     }
@@ -106,8 +112,8 @@ function widget_kiva_loan_init() {
         $html = "<link rel='stylesheet' href='". get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/style.css' type='text/css' media='screen' />";
         $html .= "<div class='loan'>";
         $html .= "<h3>" . $loan->{name}. "</h3><br />";
-        $img_source = "http://www.kiva.org/img/$size/" . $loan->{'image'}->{'id'} . ".jpg";
-        $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&id=" . $loan->{id} . "' target='_new'><img src='$img_source' alt='". $loan->{name} . "' /></a><br />";
+        $img_source = "http://www.kiva.org/img/200/" . $loan->{'image'}->{'id'} . ".jpg";
+        $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&id=" . $loan->{id} . "' target='_new'><img src='$img_source' alt='". $loan->{name} . "' style='max-height:".$size."px;max-width:".$size."px' /></a><br />";
         $html .= "<table>";
         $html .= "<tr><td style='vertical-align:top'><b>Location:</b></td><td>". $loan->{location}->{country} . ", " . $loan->{location}->{town} . "</td></tr>";
         $html .= "<tr><td style='vertical-align:top'><b>Activity:</b></td><td>" . $loan->{activity} . "</td></tr>";
@@ -140,8 +146,8 @@ function widget_kiva_loan_init() {
 ?>
 		<div>
 		<label for="kiva_username" style="line-height:35px;display:block;">Kiva Lender Name: <input type="text" id="kiva_username" name="kiva_username" value="<?php echo $username ?>" /></label>
-		<label for="number_of_loans" style="line-height:35px;display:block;">Number of loans: <input type="text" id="number_of_loans" name="number_of_loans" value="<?php echo $number_of_loans; ?>" /></label>
-        <label for="image_size" style="line-height:35px;display:block;">Image size: <br /><input type="text" id="image_size" name="image_size" value="<?php echo $image_size; ?>" /></label>
+		<label for="number_of_loans" style="line-height:35px;display:block;">Number of loans (Min. 1): <input type="text" id="number_of_loans" name="number_of_loans" value="<?php echo $number_of_loans; ?>" /></label>
+        <label for="image_size" style="line-height:35px;display:block;">Image size (Max. 200): <br /><input type="text" id="image_size" name="image_size" value="<?php echo $image_size; ?>" /></label>
 		<input type="hidden" name="kiva_loan_submit" id="kiva_loan_submit" value="1" />
 		</div>
 	<?php
