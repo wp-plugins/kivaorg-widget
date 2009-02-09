@@ -76,7 +76,7 @@ function widget_kiva_loan_init() {
             
                 // Make this randomely choose one 
                 $loan_count = 0;
-                $used = array_fill(0, $total_loans-1, 0);
+                $used = array_fill(0, $total_loans, 0);
                 for($i = 0; $i < $total_loans; $i++){
                     if($i < $limit){
                         $j = rand(0, $total_loans-1 );
@@ -139,7 +139,7 @@ function widget_kiva_loan_init() {
 // The admin control for the widget
 ?>
 		<div>
-		<label for="kiva_username" style="line-height:35px;display:block;">Kiva Username: <input type="text" id="kiva_username" name="kiva_username" value="<?php echo $username ?>" /></label>
+		<label for="kiva_username" style="line-height:35px;display:block;">Kiva Lender Name: <input type="text" id="kiva_username" name="kiva_username" value="<?php echo $username ?>" /></label>
 		<label for="number_of_loans" style="line-height:35px;display:block;">Number of loans: <input type="text" id="number_of_loans" name="number_of_loans" value="<?php echo $number_of_loans; ?>" /></label>
         <label for="image_size" style="line-height:35px;display:block;">Image size: <br /><input type="text" id="image_size" name="image_size" value="<?php echo $image_size; ?>" /></label>
 		<input type="hidden" name="kiva_loan_submit" id="kiva_loan_submit" value="1" />
