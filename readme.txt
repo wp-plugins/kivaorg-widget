@@ -1,6 +1,6 @@
 === Kiva.org Loans Widget ===
 Contributors: road2nowhere
-Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widgetkiva-loans-wordpress-widget/
+Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Tags: kiva, widgit
 Requires at least: 2.7
 Tested up to: 2.7
