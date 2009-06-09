@@ -213,6 +213,7 @@ function widget_kiva_loan_init() {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             $image = curl_exec ($ch);
             curl_close ($ch);
 
@@ -220,7 +221,7 @@ function widget_kiva_loan_init() {
             fwrite($fh, $image);
             fclose($fh);
         }else{
-            # Check for moved images
+            # Check for moved images for those empty images already retrieved
             $fh = fopen($image_path, 'r');
             $image = fread($fh, filesize($image_path));
             fclose($fh);
