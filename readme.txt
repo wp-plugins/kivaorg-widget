@@ -4,7 +4,7 @@ Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widgetkiva-loans
 Tags: kiva, widgit
 Requires at least: 2.7
 Tested up to: 2.7
-Stable tag: 2.1
+Stable tag: 2.2
 
 Displays rotating entrepreneurs the blogger has invested in publically. Links back to Kiva.
 
