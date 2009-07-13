@@ -1,10 +1,10 @@
 === Kiva.org Loans Widget ===
 Contributors: road2nowhere
-Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widgetkiva-loans-wordpress-widget/
+Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Tags: kiva, widgit
-Requires at least: 2.7
-Tested up to: 2.7
-Stable tag: 2.2
+Requires at least: 2.8
+Tested up to: 2.8.1
+Stable tag: 2.3
 
 Displays rotating entrepreneurs the blogger has invested in publically. Links back to Kiva.
 
@@ -86,6 +86,12 @@ chown www-data:www-data kivaorg-widget/cache
 or
 
 chmod 777 /kivaorg-widget/cache
+
+Why are the loan images not displaying?
+
+Kiva has moved it's images to a different location. Some images are uneffected, while others 
+will be missing in the plugin. Version 2.1 of this widget now handles these moved images. Please
+upgrade to the newest version of the Kiva Wordpress Widget
 
 == Screenshots ==
 

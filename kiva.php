@@ -1,8 +1,9 @@
 <?php
 /*
 Plugin Name: Kiva Widget
-Plugin URI: http://kiva.com
+Plugin URI: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Description: Kiva widget, display my investments
+Version: 2.1
 Author: Marilyn Burgess
 Author URI: http://urpisdream.com
 */
@@ -149,7 +150,7 @@ function widget_kiva_loan_init() {
                 return 1;
             }else{
                 // delete the old cache
-		$file = "$kiva_cache_dir/$cache_file_original";
+                $file = "$kiva_cache_dir/$cache_file_original";
                 unlink($file);
             }
         }
@@ -204,6 +205,7 @@ function widget_kiva_loan_init() {
         
         $image_path = "$kiva_cache_dir/" . $loan->{'image'}->{'id'} . ".jpg";
         $image_src = "$kiva_cache_path/" . $loan->{'image'}->{'id'} . ".jpg";
+        
         if(! file_exists($image_path)){
             $url = "http://www.kiva.org/img/w200h200/" . $loan->{'image'}->{'id'} . ".jpg";
 
@@ -211,13 +213,39 @@ function widget_kiva_loan_init() {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             $image = curl_exec ($ch);
             curl_close ($ch);
 
             $fh = fopen($image_path, 'w') or die("can't open file: " . $image_path);
             fwrite($fh, $image);
             fclose($fh);
+        }else{
+            # Check for moved images for those empty images already retrieved
+            $fh = fopen($image_path, 'r');
+            $image = fread($fh, filesize($image_path));
+            fclose($fh);
+
+            $matches = preg_match("/302 Found/s", $image);
+
+            if($matches){
+                $movedImage = preg_match("/href=[\"']([^\"']+)[\"']/", $image, $movedImageURL);
+                if($movedImage){
+                    # Get and save the moved image
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $movedImageURL[1]);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                    $image = curl_exec ($ch);
+                    curl_close ($ch);
+
+                    $fh = fopen($image_path, 'w') or die("can't open file: " . $image_path);
+                    fwrite($fh, $image);
+                    fclose($fh);
+                }
+            }
         }
+
+        
 
         $style = "max-height:".$size."px;max-width:".$size."px;width:expression(this.width > ".$size." ? \"".$size."px\" : this.width); height:expression(this.height > ".$size." ? \"".$size."px\" : this.height);";
         $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&id=" . $loan->{id} . "' target='_new'><img src='$image_src' alt='". $loan->{name} . "' style='".$style."' /></a><br />";
