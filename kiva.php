@@ -3,7 +3,7 @@
 Plugin Name: Kiva Widget
 Plugin URI: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Description: Kiva widget, display my investments
-Version: 2.5
+Version: 2.6
 Author: Marilyn Burgess
 Author URI: http://urpisdream.com
 */
@@ -34,6 +34,9 @@ global $kiva_cache_path;
 $kiva_cache_path = ( defined('WP_CONTENT_URL') ) ? WP_CONTENT_URL : ABSPATH . 'wp-content';;
 $kiva_cache_path = $kiva_cache_path . "/plugins/kivaorg-widget/cache";
 
+global $kiva_api_app_id;
+$kiva_api_app_id = "com.urpidream.wpwidget";
+
 function widget_kiva_loan_init() {
 
 	if ( !function_exists('register_sidebar_widget') || !function_exists('register_widget_control') ){
@@ -55,7 +58,7 @@ function widget_kiva_loan_init() {
 	}
 
     function get_kiva_loans(){
-
+        global $kiva_api_app_id;
         $options = get_option('widget_kiva_loan');
         $limit = $options['number_of_loans'];
         if($limit <  1){
@@ -77,7 +80,7 @@ function widget_kiva_loan_init() {
             }
 
             if($results == ""){
-                $url = "http://api.kivaws.org/v1/lenders/$username/loans.json";
+                $url = "http://api.kivaws.org/v1/lenders/$username/loans.json?app_id=$kiva_api_app_id";
         
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
@@ -119,7 +122,7 @@ function widget_kiva_loan_init() {
 
         $html = "<div id='kiva_loans'>"; 
         $html .= $content;
-        $html .= "<center><a href='http://kiva.org/'><img src='" . get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
+        $html .= "<center><a href='http://kiva.org/?app_id=$kiva_api_app_id'><img src='" . get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
         $html .= "</div>";
         return $html;
     }
@@ -246,9 +249,9 @@ function widget_kiva_loan_init() {
         }
 
         
-
+        global $kiva_api_app_id;
         $style = "max-height:".$size."px;max-width:".$size."px;width:expression(this.width > ".$size." ? \"".$size."px\" : this.width); height:expression(this.height > ".$size." ? \"".$size."px\" : this.height);";
-        $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&id=" . $loan->{id} . "' target='_new'><img src='$image_src' alt='". $loan->{name} . "' style='".$style."' /></a><br />";
+        $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&app_id=$kiva_api_app_id&id=" . $loan->{id} . "' target='_new'><img src='$image_src' alt='". $loan->{name} . "' style='".$style."' /></a><br />";
         $html .= "<table>";
         $html .= "<tr><td style='vertical-align:top'><b>Location:</b></td><td>". $loan->{location}->{country} . ", " . $loan->{location}->{town} . "</td></tr>";
         $html .= "<tr><td style='vertical-align:top'><b>Activity:</b></td><td>" . $loan->{activity} . "</td></tr>";
