@@ -3,8 +3,8 @@ Contributors: road2nowhere
 Donate link: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Tags: kiva, widgit
 Requires at least: 2.8
-Tested up to: 2.8.1
-Stable tag: 2.5
+Tested up to: 2.8.4
+Stable tag: 2.6
 
 Displays rotating entrepreneurs the blogger has invested in publically. Links back to Kiva.
 
@@ -24,6 +24,9 @@ Important: This Kiva Widget requires your Kiva Lender Name. This is not your ema
 use to login to Kiva.org! Your Kiva Lender Name is the name Kiva uses in the URL for your 
 Kiva Lender Page. You can access and change your Kiva Lender Name via the last item on .My 
 Lender Page. under .My Portfolio. on Kiva.org.
+
+Version 2.6 includes an important upgrade that allows Kiva to track the widgets requests. Please
+upgrade your copy of the Kive Wordpress widget.
 
 == Installation ==
 
