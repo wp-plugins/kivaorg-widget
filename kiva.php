@@ -3,7 +3,7 @@
 Plugin Name: Kiva Widget
 Plugin URI: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Description: Kiva widget, display my investments
-Version: 2.6
+Version: 2.7
 Author: Marilyn Burgess
 Author URI: http://urpisdream.com
 */
