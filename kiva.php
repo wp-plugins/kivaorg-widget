@@ -3,8 +3,8 @@
 Plugin Name: Kiva Widget
 Plugin URI: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
 Description: Kiva widget, display my investments
-Version: 2.8
-Author: Marilyn Burgess2
+Version: 2.9
+Author: Marilyn Burgess
 Author URI: http://urpisdream.com
 */
 
@@ -186,16 +186,41 @@ function widget_kiva_loan_init() {
             $cache_time = preg_replace("/kiva_cache_(\d+)\.txt/", "$1", $cache_file);
             $time = time();
 
-            if($time - $cache_time < (60 * 60)){
+            if($time - $cache_time < (60)){
+            #if($time - $cache_time < (60 * 60)){
                 // Cache is less than an hour old
                 return 1;
             }else{
                 // delete the old cache
-                //$file = "$kiva_cache_dir/$cache_file_original";
-                //unlink($file);
+                $file = "$kiva_cache_dir/$cache_file_original";
+                unlink($file);
+                check_for_old_cache_files();
             }
         }
         return 0;    
+    }
+
+    function check_for_old_cache_files(){
+        global $kiva_cache_dir;
+
+        $i = 0;
+        $limit = 1000;
+        if (is_dir($kiva_cache_dir)) {
+            if ($dh = opendir($kiva_cache_dir)) {
+                while (($file = readdir($dh)) !== false) {
+                    if(! is_dir($file)){
+                        if( preg_match("/^kiva_cache_/", $file)){
+                            // delelte the file
+                            unlink("$kiva_cache_dir/$file");
+                        }
+                    }
+                    $i++;
+                    if($i == $limit){
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     function get_kiva_cache(){
