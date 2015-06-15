@@ -1,6 +1,6 @@
 === Kiva.org Loans Widget ===
 Contributors: brahmina
-Donate link: http://brahminacreations.com/kiva-wordpress-widget/
+Donate link: http://brahminacreations.com
 Tags: kiva, widget, microloans
 Requires at least: 2.8
 Tested up to: 4.2.2
