@@ -4,6 +4,7 @@
 }
 #kiva_loans h3{
         font-size: 12px;
+	margin: 0;
 }
 #kiva_loans img {
         border: #272727 3px solid;

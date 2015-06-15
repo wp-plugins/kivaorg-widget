@@ -1,15 +1,15 @@
 <?php
 /*
 Plugin Name: Kiva Widget
-Plugin URI: http://urpisdream.com/2009/05/kiva-loans-wordpress-widget/
-Description: Kiva widget, display my investments
-Version: 3.0
-Author: Marilyn Burgess
-Author URI: http://urpisdream.com
+Plugin URI: http://brahminacreations.com/kiva-wordpress-widget/
+Description: Kiva widget, display your investments on the sidebar
+Version: 4.0
+Author: Brahmina Burgess
+Author URI: http://brahminacreations.com
 */
 
 /*
-  Copyright 2009 Urpi's Dream
+  Copyright 2015 Brahmina Creations
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ $kiva_cache_dir = ( defined('WP_CONTENT_DIR') ) ? WP_CONTENT_DIR : ABSPATH . 'wp
 $kiva_cache_dir = $kiva_cache_dir . '/plugins/kivaorg-widget/cache';
 
 global $kiva_cache_path;
-$kiva_cache_path = ( defined('WP_CONTENT_URL') ) ? WP_CONTENT_URL : ABSPATH . 'wp-content';;
+$kiva_cache_path = ( defined('WP_CONTENT_URL') ) ? WP_CONTENT_URL : ABSPATH . 'wp-content';
 $kiva_cache_path = $kiva_cache_path . "/plugins/kivaorg-widget/cache";
 
 global $kiva_api_app_id;
@@ -126,13 +126,13 @@ function widget_kiva_loan_init() {
             }
 
             if($total_loans == -1){
-                $content = "<p>There was an error in retriving the loans from Kiva. Please try again later</p>";
+                $content = "<p>There was an error in retrieving the loans from Kiva.org Please try again later</p>";
             }else if($total_loans <= 0){
                 $content = "<p>User has no loans!</p>";
             }else{
                 $content = "<p>I have microlent to:</p>";     
             
-                // Make this randomely choose one 
+                // Make this randomly choose one 
                 $loan_count = 0;
                 $used = array_fill(0, $total_loans, 0);
                 for($i = 0; $i < $total_loans; $i++){
@@ -154,7 +154,7 @@ function widget_kiva_loan_init() {
 
         $html = "<div id='kiva_loans'>"; 
         $html .= $content;
-        $html .= "<center><a href='http://kiva.org/?app_id=$kiva_api_app_id'><img src='" . get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
+        $html .= "<center><a href='http://kiva.org/'><img src='" . get_option('siteurl') . "/wp-content/plugins/kivaorg-widget/kiva.gif' alt='Kiva.org' class='kiva_logo' /></a></center>";
         $html .= "</div>";
         return $html;
     }
@@ -187,8 +187,8 @@ function widget_kiva_loan_init() {
             $time = time();
 
             if($time - $cache_time < (60)){
-            #if($time - $cache_time < (60 * 60)){
-                // Cache is less than an hour old
+            #if($time - $cache_time < (60 * 60 * 24)){
+                // Cache is less than a day old
                 return 1;
             }else{
                 // delete the old cache
@@ -343,7 +343,7 @@ function widget_kiva_loan_init() {
         
         global $kiva_api_app_id;
         $style = "max-height:".$size."px;max-width:".$size."px;width:expression(this.width > ".$size." ? \"".$size."px\" : this.width); height:expression(this.height > ".$size." ? \"".$size."px\" : this.height);";
-        $html .= "<a href='http://www.kiva.org/app.php?page=businesses&action=about&app_id=$kiva_api_app_id&id=" . $loan->{id} . "' target='_new'><img src='$image_src' alt='". $loan->{name} . "' style='".$style."' /></a><br />";
+        $html .= "<a href='http://www.kiva.org/lend/" . $loan->{id} . "' target='_new'><img src='$image_src' alt='". $loan->{name} . "' style='".$style."' /></a><br />";
         $html .= "<table>";
         $html .= "<tr><td style='vertical-align:top'><b>Location:</b></td><td>". $loan->{location}->{country} . ", " . $loan->{location}->{town} . "</td></tr>";
         $html .= "<tr><td style='vertical-align:top'><b>Activity:</b></td><td>" . $loan->{activity} . "</td></tr>";
